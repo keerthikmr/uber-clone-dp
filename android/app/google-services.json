@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "202788956264",
+    "project_id": "carpool-42c60",
+    "storage_bucket": "carpool-42c60.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202788956264:android:dce6690c3858179f0ab3dd",
+        "android_client_info": {
+          "package_name": "com.uberclone.uber_clone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbqG618LL264BuySczI7y3GKjj2kOQnU4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

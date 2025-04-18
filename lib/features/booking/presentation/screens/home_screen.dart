@@ -10,6 +10,8 @@ import 'package:google_maps_webservice/directions.dart' as gmw;
 import 'package:uber_clone/core/utils/map_utils.dart';
 import 'package:uber_clone/features/auth/presentation/screens/login_screen.dart';
 import 'package:uber_clone/features/driver/presentation/screens/driver_registration_screen.dart';
+import 'package:uber_clone/features/ride/presentation/screens/start_ride_screen.dart';
+import 'package:uber_clone/features/ride/presentation/screens/find_ride_screen.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -152,27 +154,57 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   double max(double a, double b) => a > b ? a : b;
 
   Widget _buildDrawer() {
-    final user = ref.watch(authProvider).user;
+    final authState = ref.watch(authProvider);
+    final isDriver = (authState.user?.userMetadata ?? {})['is_driver'] == true;
 
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text(user?.displayName ?? 'User'),
-            accountEmail: Text(user?.email ?? ''),
+            accountName:
+                Text(authState.user?.userMetadata?['full_name'] ?? 'User'),
+            accountEmail: Text(authState.user?.email ?? ''),
             currentAccountPicture: CircleAvatar(
-              backgroundImage:
-                  user?.photoURL != null && user!.photoURL!.isNotEmpty
-                      ? NetworkImage(user.photoURL!)
-                      : null,
-              child: user?.photoURL == null || user!.photoURL!.isEmpty
+              backgroundImage: authState.user?.userMetadata?['avatar_url'] !=
+                      null
+                  ? NetworkImage(authState.user!.userMetadata!['avatar_url'])
+                  : null,
+              child: authState.user?.userMetadata?['avatar_url'] == null
                   ? const Icon(Icons.person)
                   : null,
             ),
             decoration: const BoxDecoration(
               color: AppTheme.primaryColor,
             ),
+          ),
+          if (isDriver) ...[
+            ListTile(
+              leading: const Icon(Icons.directions_car),
+              title: const Text('Start a Ride'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const StartRideScreen(),
+                  ),
+                );
+              },
+            ),
+          ],
+          ListTile(
+            leading: const Icon(Icons.search),
+            title: const Text('Find a Ride'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FindRideScreen(),
+                ),
+              );
+            },
           ),
           ListTile(
             leading: const Icon(Icons.history),
@@ -198,19 +230,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               Navigator.pop(context);
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.local_taxi_outlined),
-            title: const Text('Register as Driver'),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const DriverRegistrationScreen(),
-                ),
-              );
-            },
-          ),
+          if (!isDriver)
+            ListTile(
+              leading: const Icon(Icons.local_taxi_outlined),
+              title: const Text('Register as Driver'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DriverRegistrationScreen(),
+                  ),
+                );
+              },
+            ),
           const Divider(),
           ListTile(
             leading: const Icon(Icons.logout),
@@ -271,7 +304,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   child: Column(
                     children: [
                       Container(
-                        height: 56,
+                        height: _isSearching ? 112 : 56,
                         padding: EdgeInsets.only(
                           left: _isSearching ? 0 : 0,
                           right: 8,
@@ -312,7 +345,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               ),
                               Expanded(
                                 child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
                                     LocationSearchField(
                                       hintText: 'Where from?',

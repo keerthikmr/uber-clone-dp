@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:uber_clone/features/driver/domain/models/driver_details.dart';
 import 'package:uber_clone/features/driver/presentation/providers/driver_registration_provider.dart';
 
 class DriverRegistrationScreen extends ConsumerStatefulWidget {
@@ -336,18 +337,19 @@ class _DriverRegistrationScreenState
                             print('Form validated, attempting registration...');
                             try {
                               final details = DriverDetails(
-                                id: '', // Will be set by Supabase
                                 fullName: _nameController.text,
                                 phoneNumber: _phoneController.text,
                                 email: _emailController.text,
-                                dateOfBirth: _dateOfBirth,
+                                dateOfBirth: _dateOfBirth ?? DateTime.now(),
                                 gender: _selectedGender,
                                 licenseNumber: _licenseController.text,
-                                licenseExpiryDate: _licenseExpiryDate,
+                                licenseExpiryDate:
+                                    _licenseExpiryDate ?? DateTime.now(),
                                 vehicleType: _selectedVehicleType,
                                 vehicleRegistrationNumber:
                                     _vehicleNumberController.text,
-                                vehicleInsuranceExpiry: _insuranceExpiryDate,
+                                vehicleInsuranceExpiry:
+                                    _insuranceExpiryDate ?? DateTime.now(),
                                 streetAddress: _streetController.text,
                                 city: _cityController.text,
                                 state: _stateController.text,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:uber_clone/core/theme/app_theme.dart';
 
 class BookingBottomSheet extends StatelessWidget {
   final VoidCallback onSearchPressed;

@@ -20,7 +20,7 @@ DriverDetails _$DriverDetailsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DriverDetails {
-  String get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'full_name')
   String get fullName => throw _privateConstructorUsedError;
   @JsonKey(name: 'phone_number')
@@ -46,11 +46,11 @@ mixin _$DriverDetails {
   @JsonKey(name: 'zip_code')
   String get zipCode => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_photo_url')
-  String get profilePhotoUrl => throw _privateConstructorUsedError;
+  String? get profilePhotoUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'license_photo_url')
-  String get licensePhotoUrl => throw _privateConstructorUsedError;
+  String? get licensePhotoUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'insurance_photo_url')
-  String get insurancePhotoUrl => throw _privateConstructorUsedError;
+  String? get insurancePhotoUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_verified')
   bool get isVerified => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
@@ -75,7 +75,7 @@ abstract class $DriverDetailsCopyWith<$Res> {
       _$DriverDetailsCopyWithImpl<$Res, DriverDetails>;
   @useResult
   $Res call(
-      {String id,
+      {String? id,
       @JsonKey(name: 'full_name') String fullName,
       @JsonKey(name: 'phone_number') String phoneNumber,
       String email,
@@ -92,9 +92,9 @@ abstract class $DriverDetailsCopyWith<$Res> {
       String city,
       String state,
       @JsonKey(name: 'zip_code') String zipCode,
-      @JsonKey(name: 'profile_photo_url') String profilePhotoUrl,
-      @JsonKey(name: 'license_photo_url') String licensePhotoUrl,
-      @JsonKey(name: 'insurance_photo_url') String insurancePhotoUrl,
+      @JsonKey(name: 'profile_photo_url') String? profilePhotoUrl,
+      @JsonKey(name: 'license_photo_url') String? licensePhotoUrl,
+      @JsonKey(name: 'insurance_photo_url') String? insurancePhotoUrl,
       @JsonKey(name: 'is_verified') bool isVerified,
       @JsonKey(name: 'created_at') DateTime? createdAt,
       @JsonKey(name: 'updated_at') DateTime? updatedAt});
@@ -115,7 +115,7 @@ class _$DriverDetailsCopyWithImpl<$Res, $Val extends DriverDetails>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? fullName = null,
     Object? phoneNumber = null,
     Object? email = null,
@@ -130,18 +130,18 @@ class _$DriverDetailsCopyWithImpl<$Res, $Val extends DriverDetails>
     Object? city = null,
     Object? state = null,
     Object? zipCode = null,
-    Object? profilePhotoUrl = null,
-    Object? licensePhotoUrl = null,
-    Object? insurancePhotoUrl = null,
+    Object? profilePhotoUrl = freezed,
+    Object? licensePhotoUrl = freezed,
+    Object? insurancePhotoUrl = freezed,
     Object? isVerified = null,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       fullName: null == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
@@ -198,18 +198,18 @@ class _$DriverDetailsCopyWithImpl<$Res, $Val extends DriverDetails>
           ? _value.zipCode
           : zipCode // ignore: cast_nullable_to_non_nullable
               as String,
-      profilePhotoUrl: null == profilePhotoUrl
+      profilePhotoUrl: freezed == profilePhotoUrl
           ? _value.profilePhotoUrl
           : profilePhotoUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      licensePhotoUrl: null == licensePhotoUrl
+              as String?,
+      licensePhotoUrl: freezed == licensePhotoUrl
           ? _value.licensePhotoUrl
           : licensePhotoUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      insurancePhotoUrl: null == insurancePhotoUrl
+              as String?,
+      insurancePhotoUrl: freezed == insurancePhotoUrl
           ? _value.insurancePhotoUrl
           : insurancePhotoUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isVerified: null == isVerified
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
@@ -235,7 +235,7 @@ abstract class _$$DriverDetailsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {String? id,
       @JsonKey(name: 'full_name') String fullName,
       @JsonKey(name: 'phone_number') String phoneNumber,
       String email,
@@ -252,9 +252,9 @@ abstract class _$$DriverDetailsImplCopyWith<$Res>
       String city,
       String state,
       @JsonKey(name: 'zip_code') String zipCode,
-      @JsonKey(name: 'profile_photo_url') String profilePhotoUrl,
-      @JsonKey(name: 'license_photo_url') String licensePhotoUrl,
-      @JsonKey(name: 'insurance_photo_url') String insurancePhotoUrl,
+      @JsonKey(name: 'profile_photo_url') String? profilePhotoUrl,
+      @JsonKey(name: 'license_photo_url') String? licensePhotoUrl,
+      @JsonKey(name: 'insurance_photo_url') String? insurancePhotoUrl,
       @JsonKey(name: 'is_verified') bool isVerified,
       @JsonKey(name: 'created_at') DateTime? createdAt,
       @JsonKey(name: 'updated_at') DateTime? updatedAt});
@@ -273,7 +273,7 @@ class __$$DriverDetailsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? fullName = null,
     Object? phoneNumber = null,
     Object? email = null,
@@ -288,18 +288,18 @@ class __$$DriverDetailsImplCopyWithImpl<$Res>
     Object? city = null,
     Object? state = null,
     Object? zipCode = null,
-    Object? profilePhotoUrl = null,
-    Object? licensePhotoUrl = null,
-    Object? insurancePhotoUrl = null,
+    Object? profilePhotoUrl = freezed,
+    Object? licensePhotoUrl = freezed,
+    Object? insurancePhotoUrl = freezed,
     Object? isVerified = null,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
     return _then(_$DriverDetailsImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       fullName: null == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
@@ -356,18 +356,18 @@ class __$$DriverDetailsImplCopyWithImpl<$Res>
           ? _value.zipCode
           : zipCode // ignore: cast_nullable_to_non_nullable
               as String,
-      profilePhotoUrl: null == profilePhotoUrl
+      profilePhotoUrl: freezed == profilePhotoUrl
           ? _value.profilePhotoUrl
           : profilePhotoUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      licensePhotoUrl: null == licensePhotoUrl
+              as String?,
+      licensePhotoUrl: freezed == licensePhotoUrl
           ? _value.licensePhotoUrl
           : licensePhotoUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      insurancePhotoUrl: null == insurancePhotoUrl
+              as String?,
+      insurancePhotoUrl: freezed == insurancePhotoUrl
           ? _value.insurancePhotoUrl
           : insurancePhotoUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isVerified: null == isVerified
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
@@ -388,7 +388,7 @@ class __$$DriverDetailsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DriverDetailsImpl implements _DriverDetails {
   const _$DriverDetailsImpl(
-      {required this.id,
+      {this.id,
       @JsonKey(name: 'full_name') required this.fullName,
       @JsonKey(name: 'phone_number') required this.phoneNumber,
       required this.email,
@@ -405,9 +405,9 @@ class _$DriverDetailsImpl implements _DriverDetails {
       required this.city,
       required this.state,
       @JsonKey(name: 'zip_code') required this.zipCode,
-      @JsonKey(name: 'profile_photo_url') required this.profilePhotoUrl,
-      @JsonKey(name: 'license_photo_url') required this.licensePhotoUrl,
-      @JsonKey(name: 'insurance_photo_url') required this.insurancePhotoUrl,
+      @JsonKey(name: 'profile_photo_url') this.profilePhotoUrl,
+      @JsonKey(name: 'license_photo_url') this.licensePhotoUrl,
+      @JsonKey(name: 'insurance_photo_url') this.insurancePhotoUrl,
       @JsonKey(name: 'is_verified') this.isVerified = false,
       @JsonKey(name: 'created_at') this.createdAt,
       @JsonKey(name: 'updated_at') this.updatedAt});
@@ -416,7 +416,7 @@ class _$DriverDetailsImpl implements _DriverDetails {
       _$$DriverDetailsImplFromJson(json);
 
   @override
-  final String id;
+  final String? id;
   @override
   @JsonKey(name: 'full_name')
   final String fullName;
@@ -457,13 +457,13 @@ class _$DriverDetailsImpl implements _DriverDetails {
   final String zipCode;
   @override
   @JsonKey(name: 'profile_photo_url')
-  final String profilePhotoUrl;
+  final String? profilePhotoUrl;
   @override
   @JsonKey(name: 'license_photo_url')
-  final String licensePhotoUrl;
+  final String? licensePhotoUrl;
   @override
   @JsonKey(name: 'insurance_photo_url')
-  final String insurancePhotoUrl;
+  final String? insurancePhotoUrl;
   @override
   @JsonKey(name: 'is_verified')
   final bool isVerified;
@@ -568,38 +568,37 @@ class _$DriverDetailsImpl implements _DriverDetails {
 
 abstract class _DriverDetails implements DriverDetails {
   const factory _DriverDetails(
-      {required final String id,
-      @JsonKey(name: 'full_name') required final String fullName,
-      @JsonKey(name: 'phone_number') required final String phoneNumber,
-      required final String email,
-      @JsonKey(name: 'date_of_birth') required final DateTime dateOfBirth,
-      required final String gender,
-      @JsonKey(name: 'license_number') required final String licenseNumber,
-      @JsonKey(name: 'license_expiry_date')
-      required final DateTime licenseExpiryDate,
-      @JsonKey(name: 'vehicle_type') required final String vehicleType,
-      @JsonKey(name: 'vehicle_registration_number')
-      required final String vehicleRegistrationNumber,
-      @JsonKey(name: 'vehicle_insurance_expiry')
-      required final DateTime vehicleInsuranceExpiry,
-      @JsonKey(name: 'street_address') required final String streetAddress,
-      required final String city,
-      required final String state,
-      @JsonKey(name: 'zip_code') required final String zipCode,
-      @JsonKey(name: 'profile_photo_url') required final String profilePhotoUrl,
-      @JsonKey(name: 'license_photo_url') required final String licensePhotoUrl,
-      @JsonKey(name: 'insurance_photo_url')
-      required final String insurancePhotoUrl,
-      @JsonKey(name: 'is_verified') final bool isVerified,
-      @JsonKey(name: 'created_at') final DateTime? createdAt,
-      @JsonKey(name: 'updated_at')
-      final DateTime? updatedAt}) = _$DriverDetailsImpl;
+          {final String? id,
+          @JsonKey(name: 'full_name') required final String fullName,
+          @JsonKey(name: 'phone_number') required final String phoneNumber,
+          required final String email,
+          @JsonKey(name: 'date_of_birth') required final DateTime dateOfBirth,
+          required final String gender,
+          @JsonKey(name: 'license_number') required final String licenseNumber,
+          @JsonKey(name: 'license_expiry_date')
+          required final DateTime licenseExpiryDate,
+          @JsonKey(name: 'vehicle_type') required final String vehicleType,
+          @JsonKey(name: 'vehicle_registration_number')
+          required final String vehicleRegistrationNumber,
+          @JsonKey(name: 'vehicle_insurance_expiry')
+          required final DateTime vehicleInsuranceExpiry,
+          @JsonKey(name: 'street_address') required final String streetAddress,
+          required final String city,
+          required final String state,
+          @JsonKey(name: 'zip_code') required final String zipCode,
+          @JsonKey(name: 'profile_photo_url') final String? profilePhotoUrl,
+          @JsonKey(name: 'license_photo_url') final String? licensePhotoUrl,
+          @JsonKey(name: 'insurance_photo_url') final String? insurancePhotoUrl,
+          @JsonKey(name: 'is_verified') final bool isVerified,
+          @JsonKey(name: 'created_at') final DateTime? createdAt,
+          @JsonKey(name: 'updated_at') final DateTime? updatedAt}) =
+      _$DriverDetailsImpl;
 
   factory _DriverDetails.fromJson(Map<String, dynamic> json) =
       _$DriverDetailsImpl.fromJson;
 
   @override
-  String get id;
+  String? get id;
   @override
   @JsonKey(name: 'full_name')
   String get fullName;
@@ -640,13 +639,13 @@ abstract class _DriverDetails implements DriverDetails {
   String get zipCode;
   @override
   @JsonKey(name: 'profile_photo_url')
-  String get profilePhotoUrl;
+  String? get profilePhotoUrl;
   @override
   @JsonKey(name: 'license_photo_url')
-  String get licensePhotoUrl;
+  String? get licensePhotoUrl;
   @override
   @JsonKey(name: 'insurance_photo_url')
-  String get insurancePhotoUrl;
+  String? get insurancePhotoUrl;
   @override
   @JsonKey(name: 'is_verified')
   bool get isVerified;

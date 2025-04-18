@@ -6,7 +6,7 @@ part 'driver_details.g.dart';
 @freezed
 class DriverDetails with _$DriverDetails {
   const factory DriverDetails({
-    required String id,
+    String? id,
     @JsonKey(name: 'full_name') required String fullName,
     @JsonKey(name: 'phone_number') required String phoneNumber,
     required String email,
@@ -23,9 +23,9 @@ class DriverDetails with _$DriverDetails {
     required String city,
     required String state,
     @JsonKey(name: 'zip_code') required String zipCode,
-    @JsonKey(name: 'profile_photo_url') required String profilePhotoUrl,
-    @JsonKey(name: 'license_photo_url') required String licensePhotoUrl,
-    @JsonKey(name: 'insurance_photo_url') required String insurancePhotoUrl,
+    @JsonKey(name: 'profile_photo_url') String? profilePhotoUrl,
+    @JsonKey(name: 'license_photo_url') String? licensePhotoUrl,
+    @JsonKey(name: 'insurance_photo_url') String? insurancePhotoUrl,
     @JsonKey(name: 'is_verified') @Default(false) bool isVerified,
     @JsonKey(name: 'created_at') DateTime? createdAt,
     @JsonKey(name: 'updated_at') DateTime? updatedAt,

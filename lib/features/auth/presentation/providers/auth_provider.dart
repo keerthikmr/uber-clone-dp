@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:logger/logger.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:uber_clone/core/config/supabase_config.dart';
 
 part 'auth_provider.g.dart';
 
@@ -16,9 +16,9 @@ class Auth extends _$Auth {
   }
 
   void _setupAuthStateListener() {
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      logger.i('Auth state changed: ${user?.email ?? 'No user'}');
-      state = AuthState(user: user, isLoading: false);
+    SupabaseConfig.client.auth.onAuthStateChange.listen((data) {
+      logger.i('Auth state changed: ${data.session?.user.email ?? 'No user'}');
+      state = AuthState(user: data.session?.user, isLoading: false);
     });
   }
 
@@ -27,32 +27,21 @@ class Auth extends _$Auth {
       state = state.copyWith(isLoading: true, error: null);
       logger.i('Starting Google Sign In process');
 
-      // Trigger the authentication flow
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      logger.i(
-          'Google Sign In completed: ${googleUser?.email ?? 'No user selected'}');
+      final response = await SupabaseConfig.client.auth.signInWithOAuth(
+        OAuthProvider.google,
+        redirectTo: 'uberclone://login-callback/',
+      );
 
-      if (googleUser == null) {
-        logger.w('Google Sign In cancelled by user');
-        state = state.copyWith(isLoading: false);
+      if (!response) {
+        logger.w('Google Sign In failed');
+        state = state.copyWith(
+          isLoading: false,
+          error: 'Failed to sign in with Google',
+        );
         return;
       }
 
-      // Obtain the auth details from the request
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
-      logger.i('Got Google auth tokens');
-
-      // Create a new credential
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-
-      // Sign in to Firebase with the Google credential
-      final userCredential =
-          await FirebaseAuth.instance.signInWithCredential(credential);
-      logger.i('Firebase auth completed: ${userCredential.user?.email}');
+      logger.i('Google Sign In completed successfully');
     } catch (e) {
       logger.e('Error during Google Sign In: $e');
       state = state.copyWith(
@@ -67,8 +56,7 @@ class Auth extends _$Auth {
       state = state.copyWith(isLoading: true, error: null);
       logger.i('Starting sign out process');
 
-      await FirebaseAuth.instance.signOut();
-      await GoogleSignIn().signOut();
+      await SupabaseConfig.client.auth.signOut();
 
       logger.i('Sign out completed successfully');
     } catch (e) {

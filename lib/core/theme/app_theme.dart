@@ -12,11 +12,11 @@ class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
-      colorScheme: ColorScheme.light(
+      colorScheme: const ColorScheme.light(
         primary: primaryColor,
         secondary: secondaryColor,
         error: errorColor,
-        background: backgroundColor,
+        surface: backgroundColor,
       ),
       appBarTheme: const AppBarTheme(
         backgroundColor: backgroundColor,
@@ -89,9 +89,9 @@ class AppTheme {
         primary: Colors.white,
         secondary: secondaryColor,
         error: errorColor,
-        background: Colors.grey[900]!,
+        surface: Colors.grey[900]!,
       ),
       // Add dark theme configurations here
     );
   }
-} 
+}

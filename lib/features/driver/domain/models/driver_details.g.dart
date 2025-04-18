@@ -8,7 +8,7 @@ part of 'driver_details.dart';
 
 _$DriverDetailsImpl _$$DriverDetailsImplFromJson(Map<String, dynamic> json) =>
     _$DriverDetailsImpl(
-      id: json['id'] as String,
+      id: json['id'] as String?,
       fullName: json['full_name'] as String,
       phoneNumber: json['phone_number'] as String,
       email: json['email'] as String,
@@ -24,9 +24,9 @@ _$DriverDetailsImpl _$$DriverDetailsImplFromJson(Map<String, dynamic> json) =>
       city: json['city'] as String,
       state: json['state'] as String,
       zipCode: json['zip_code'] as String,
-      profilePhotoUrl: json['profile_photo_url'] as String,
-      licensePhotoUrl: json['license_photo_url'] as String,
-      insurancePhotoUrl: json['insurance_photo_url'] as String,
+      profilePhotoUrl: json['profile_photo_url'] as String?,
+      licensePhotoUrl: json['license_photo_url'] as String?,
+      insurancePhotoUrl: json['insurance_photo_url'] as String?,
       isVerified: json['is_verified'] as bool? ?? false,
       createdAt: json['created_at'] == null
           ? null

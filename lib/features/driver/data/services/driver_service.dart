@@ -70,6 +70,17 @@ class DriverService {
         .getPublicUrl('$folder/$fileName');
   }
 
+  Future<void> updateUserProfileName(String userId, String fullName) async {
+    try {
+      await _client
+          .from('profiles')
+          .update({'full_name': fullName}).eq('id', userId);
+    } catch (e) {
+      print('Error updating user profile name: $e');
+      // Don't throw here as this is a secondary operation
+    }
+  }
+
   Future<DriverDetails> registerDriver({
     required DriverDetails driverDetails,
     required File profilePhoto,
@@ -81,6 +92,15 @@ class DriverService {
 
       // Ensure the drivers table exists
       await ensureDriversTableExists();
+
+      // Get current user
+      final user = _client.auth.currentUser;
+      if (user == null) {
+        throw Exception('User must be logged in to register as driver');
+      }
+
+      // Update user's profile name
+      await updateUserProfileName(user.id, driverDetails.fullName);
 
       // For testing only - check if connection works
       print('Testing Supabase connection...');
@@ -151,10 +171,13 @@ class DriverService {
 
   Future<void> updateDriverDetails(DriverDetails driver) async {
     try {
+      if (driver.id == null) {
+        throw Exception('Cannot update driver: ID is null');
+      }
       await _client
           .from('drivers')
           .update(driver.copyWith(updatedAt: DateTime.now()).toJson())
-          .eq('id', driver.id);
+          .eq('id', driver.id!);
     } catch (e) {
       throw Exception('Failed to update driver details: $e');
     }
